@@ -1,8 +1,5 @@
-# React + Vite
+# Mxpertzz Test Solution for Mern/React JS Profile
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Author:- Divy Deshmukh
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Hey there! Please check out the code and contact on divydeshmukh1104@gmail.com. LinkedIN:- https://www.linkedin.com/in/divy-deshmukh-035763235?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
