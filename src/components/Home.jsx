@@ -12,6 +12,7 @@ function Home() {
   const dispatch = useDispatch();
   const storedData = useSelector(state => state.storiesData)
   const [activeFilter, setActiveFilter] = useState('');
+  const [loading, setLoading] = useState(true);
 
   // a slider or carousel can be integrated with react-slicker 
   // var settings = {
@@ -29,6 +30,7 @@ function Home() {
       const data = await response.json();
       // console.log(data);
       setData(data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -68,6 +70,14 @@ function Home() {
       dispatch(setStoriesData(data));
     }
   }, [data]);
+
+  if (loading) {
+    return (
+      <div className='h-screen flex items-center justify-center'>
+        <h1>Loading...</h1>
+      </div>
+    )
+  }
 
   return (
     <div className='h-full w-full bg-[#0F172A] text-white flex flex-col gap-4'>
