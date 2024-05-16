@@ -9,6 +9,7 @@ import DailyQuiz from "./DailyQuiz";
 import Menu from "./Menu";
 import Card from "./Card";
 import Page2 from "./Page2";
+import Story from "./Story";
 
 export {
     Header,
@@ -21,5 +22,6 @@ export {
     DailyQuiz,
     Menu,
     Card,
-    Page2
+    Page2,
+    Story
 }
