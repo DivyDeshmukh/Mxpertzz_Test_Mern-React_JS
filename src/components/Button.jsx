@@ -8,7 +8,7 @@ function Button({
   ...props
 }) {
   return (
-    <button type={type} className={`px-3 py-1 text-[15px] font-semibold rounded-xl ${className}`} {...props} onClick={() => props.updateActiveFilter(children)}>
+    <button type={type} className={`px-3 py-1 text-[15px] font-semibold rounded-xl ${className}`} {...props} onClick={() => updateActiveFilter(children)}>
       {children}
     </button>
   );
