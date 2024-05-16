@@ -8,20 +8,21 @@ function Page2() {
 
     const {id} = useParams();
     const itemInfo = useSelector(state => state.storiesData);
-    const [item, setItem] = useState({});
-    const [activeFilter, setActiveFilter] = useState('Word Explore')
+    const [item, setItem] = useState(null);
+    const [activeFilter, setActiveFilter] = useState('Word Explore');
+
     // console.log(itemInfo);
 
     const updateActiveFilter = (filter) => {
       setActiveFilter(filter);
     }
+
     useEffect(() => {
         // we can make API call with specific id but as we have already stored data inside redux store so we can fetch from there.
         const item = itemInfo?.filter((item) => (
             item._id == id
         ));
         setItem(item[0]);
-        // console.log(item);
     }, [id]);
 
   return (
@@ -42,32 +43,40 @@ function Page2() {
             <div id="drag" className='h-full w-[40%] flex items-center justify-center bg-slate-700'>
                 drop here
             </div>
-            <div id="storiesData" className='h-full w-[60%] flex gap-8 flex-row flex-wrap overflow-y-auto items-center justify-center'>
+           {
+            (!(item?.Wordexplore?.length !== 0 || item?.Brainquest?.length !== 0)) ? (
+                <div className='h-full flex items-center justify-center text-center'>
+                  <h1>No content in this story open another one...</h1>
+                </div>
+            ) : (
+              <div id="storiesData" className='h-full w-[60%] flex gap-8 flex-row flex-wrap overflow-y-auto items-center justify-center'>
               {/* API has some spelling mistakes and some values are not present */}
                 {/* Rendering Word Explore items */}
-                {(item?.Wordexplore && activeFilter === 'Word Explore') && (
-                  item.Wordexplore.map((story, index) => (
-                    <div key={index} className='h-[200px] w-[200px] p-2 rounded-xl bg-blue-800 flex flex-col justify-center items-center gap-2'>
+                {(item?.Wordexplore?.length !== 0 && activeFilter === 'Word Explore') ? (
+                  item?.Wordexplore?.map((story, index) => (
+                    <Link to={`${item._id}`} key={index} className='h-[200px] w-[200px] p-2 rounded-xl bg-blue-800 flex flex-col justify-center items-center gap-2'>
                       <div id="img" className='h-[60%] overflow-hidden w-full'>
                         {story.Storyimage && <img src={`https://ik.imagekit.io/dev24/${story.Storyimage[0]}`} alt="" className='h-full w-full object-contain' />}
                       </div>
                       <h1 className='text-center text-[13.5px] text-wrap'>{story.Storytitle}</h1>
                       <Button className='w-full'>{story.Storyttext}</Button>
-                    </div>
+                    </Link>
                   ))
-                )}
+                ) : (activeFilter === 'Word Explore') && <h1>Nothing inside it or Loading...</h1>
+                }
 
                 {/* Rendering Story Adventure items */}
-                {(item?.Storyadvenure && activeFilter === 'In Story Adventure') && (
+                {(item?.Storyadvenure && activeFilter === 'In Story Adventure') ? (
                   item.Storyadvenure?.content?.map((story, index) => (
                     <Link to={story._id} key={index}>{story.Paragraph}</Link>
                   ))
-                )}
+                ) : (activeFilter === 'Story Adventure') && <h1>Nothing inside it or Loading...</h1>
+                }
 
                 {/* Rendering Brain Quest items */}
-                {(item?.Brainquest && activeFilter === 'Brain Quest') && (
+                {(item?.Brainquest && activeFilter === 'Brain Quest') ? (
                   item.Brainquest.map((question, index) => (
-                    <div key={index}>
+                    <Link to={`${item._id}`} key={index}>
                       <h1>{question.Question}</h1>
                       <p>{question.Answer}</p>
                       <select name="" id="">
@@ -75,10 +84,13 @@ function Page2() {
                           <option key={optionIndex}>{option}</option>
                         ))}
                       </select>
-                    </div>
+                    </Link>
                   ))
-                )}
+                ) : (activeFilter === 'Brain Quest') && <h1>Nothing inside it or Loading...</h1>
+                }
         </div>
+            )
+           }
 
         </div>
         <div id="bottom" className='flex w-full justify-between h-[5%] px-4 mt-4'>
