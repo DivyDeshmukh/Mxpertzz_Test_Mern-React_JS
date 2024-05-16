@@ -2,7 +2,7 @@ import React from 'react';
 
 function Leaderboard() {
   return (
-    <div>
+    <div className='h-screen flex justify-center items-center'>
       LeaderBoard
     </div>
   );
