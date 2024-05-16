@@ -2,7 +2,7 @@ import React from 'react';
 
 function DailyQuiz() {
   return (
-    <div>
+    <div className='h-screen flex justify-center items-center'>
       DailyQuiz
     </div>
   );
